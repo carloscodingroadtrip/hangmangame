@@ -39,23 +39,28 @@
     <section id="header">
             <div class="container">
               <div class="row">
-                <div class="col-md-6 header-left">
-                  <!--<img src="img/logo-header.png" class="img-fluid">-->
-                  <!--<img style="border-radius: 50%;" src="img/cmolina.jpg" > -->
+                <div class="col header-left">
                   <h1>Hangman Super Heroes Game</h1>
                   <h2>Developed using Javascript</h2>
-                  <p class="lead">This site holds the work of Carlos Molina. A man who has next to no idea where this lot of Javascript/React/Blah Blah Blah will take him. </p>
-                  <p class="hidden-sm-down d-none d-md-block">This is a sample application for me to have a better understanding using Bootstrap 4. This will be my portfolio once I go in the field looking for a job.</p>
-                  <p class="hidden-sm-down d-none d-md-block">This is a sample application for me to have a better understanding using Bootstrap 4. This will be my portfolio once I go in the field looking for a job.</p>
-                  <p class="hidden-sm-down d-none d-md-block">This is a sample application for me to have a better understanding using Bootstrap 4. This will be my portfolio once I go in the field looking for a job.</p>
-                  <p class="hidden-sm-down d-none d-md-block">This is a sample application for me to have a better understanding using Bootstrap 4. This will be my portfolio once I go in the field looking for a job.</p>
-                  <p class="hidden-sm-down d-none d-md-block">This is a sample application for me to have a better understanding using Bootstrap 4. This will be my portfolio once I go in the field looking for a job.</p>
-                  <p class="hidden-sm-down d-none d-md-block">This is a sample application for me to have a better understanding using Bootstrap 4. This will be my portfolio once I go in the field looking for a job.</p>
+                  <h3>Press any key to start the game!</h3>
+                  <div id="buttons" class="text-uppercase"></div>
                 </div>
+
                 <div class="col-md-6 header-right d-none d-md-block">
-                  <p>If you have a project that you want to get started, think you need my help with something or just fancy saying hey, then get in touch.</p>
+                    <h3 id="categoryName"></h3>
+                    <h3 id="livesLeft" class="text-info strong"></h3>
+                    <div id="hold" class="text-uppercase"></div>
                 </div>
               </div>
+              <div class="row">
+                    <div class="col-md-6 header-left">
+                         <h1>Wins:<span id="winholder">0</span></h1>
+                         <h1>Losses:<span id="lossesholder">0</span></h1>
+                    </div>
+                    <div class="col-md-6 header-right">
+
+                    </div>
+            </div>
             </div>
           </section>
 
