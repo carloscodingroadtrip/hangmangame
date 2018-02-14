@@ -1,1 +1,1 @@
-# hangmangama
+# The Hangman Game
