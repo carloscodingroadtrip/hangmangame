@@ -5,6 +5,7 @@ var gameVars = {
   Lives: 10
 };
 
+//All the words for the hangman
 puzzleWords = [
   [
     "banana",
@@ -116,21 +117,22 @@ var alphabetBoard = [
   "y",
   "z"
 ];
-
 // create a function to display the alphabet as buttons
 function alphabetButtons() {
-  myButtons = document.getElementById("buttons");
-  letters = document.createElement("ul");
-
+  var myButtons = document.getElementById("buttons");
+  var letters = document.createElement("ul");
+  letters.setAttribute("id","alphabetBoard");
   for (var i = 0; i < alphabetBoard.length; i++) {
-    letters.id = "alphabetBoard";
-    list = document.createElement("li");
-    list.id = "letter";
+    var list = document.createElement("li");
+    list.setAttribute("id","letter");
     list.innerHTML = alphabetBoard[i];
     myButtons.appendChild(letters);
     letters.appendChild(list);
+    //
+
   }
 }
+
 alphabetButtons();
 console.log(letter);
 
@@ -156,9 +158,13 @@ function displayWord() {
   };
 };
 displayWord();
-// Show lives
+
 // Get the element to display lives left in the game
 var showLives = document.getElementById("livesLeft");
+// Show lives
+showLives.innerHTML = "You have " + gameVars.Lives + " remaining.";
+
+//Below, I will use these variables to show the win/losses
 var showWins = document.getElementById("winholder");
 var showLosses = document.getElementById("lossesholder");
 var correctUserGuesses = [];
@@ -166,27 +172,19 @@ var correctUserGuesses = [];
 // When the user presses a key, it will run the following function...
 document.onkeyup = function(event) {
     var userGuessedLetter = event.key.toLowerCase(); //capture user input
-    //console.log(word);
-    var searchChosenWord = chosenword.split(' ');
+    var getIndexChosenWord = chosenword.indexOf(userGuessedLetter);
+    console.log(getIndexChosenWord);
         //Evaluate if the user guessed letter exist in the chosen PC Word
-        if ( searchChosenWord.join('').indexOf(userGuessedLetter) > -1) {
-            console.log('User input exist in our chosen word');
-            correctUserGuesses.push(userGuessedLetter);
-            console.log(correctUserGuesses.join(' '));
-        } else if(gameVars.Lives>0) {
-            gameVars.Lives--;
-            console.log(gameVars.Lives);
-        };
-        if (gameVars.Lives === 0 )  {
-            gameVars.Losses++;
-            console.log('the losses are' + gameVars.Losses);
-        }
-};
-    // if (event.keyCode >= 65 && event.keyCode <= 90 && gameResume || event.keyCode ===222) {
-    //     var userGuessedLetter = event.key.toLowerCase(); //capture user input
-    // };
-    console.log('--------ARRAY ---------');
+        if ( chosenword.indexOf(userGuessedLetter) > -1) {
+            console.log('Yey, the guess from the user exist in our chosen word');
 
+            correctUserGuesses.splice(getIndexChosenWord, 0, userGuessedLetter);
+            console.log(correctUserGuesses.join(' '));
+        } else {
+            gameVars.Lives--;
+            showLives.innerHTML = "You have " + gameVars.Lives + " remaining.";
+        };
+};
 
 
 
