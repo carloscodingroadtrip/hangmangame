@@ -159,6 +159,24 @@ function displayWord() {
 };
 displayWord();
 
+function findLetter(letter, word) {  //the function will receive 2 parameters.
+  let counter = 0; //Count all the occurences
+  let capLetter = letter.toUpperCase();
+  let wordArray = Array.of(word.split('')); //Split the word in pieces
+  let indexForLetters = {};
+  for (i=0; i < word.length; i++){
+    if(letter === word[i] || capLetter === word[i]) {
+      if(!indexForLetters[word[i]]) {
+          indexForLetters[[i]] = word[i];
+      }
+      counter++;
+    }
+  }
+  // var result = "The letter " + letter + " was found " + counter + " times in the word " + word;
+  return indexForLetters; //returns an object with the index for each occurence
+}
+
+
 // Get the element to display lives left in the game
 var showLives = document.getElementById("livesLeft");
 // Show lives
@@ -171,20 +189,21 @@ var correctUserGuesses = [];
 //
 // When the user presses a key, it will run the following function...
 document.onkeyup = function(event) {
-    var userGuessedLetter = event.key.toLowerCase(); //capture user input
-    var getIndexChosenWord = chosenword.indexOf(userGuessedLetter);
-    console.log(getIndexChosenWord);
+    var userGuessedLetter = event.key; //capture user input
+    var obj = findLetter(userGuessedLetter, chosenword);
+    console.log(findLetter(userGuessedLetter, chosenword));
         //Evaluate if the user guessed letter exist in the chosen PC Word
-        if ( chosenword.indexOf(userGuessedLetter) > -1) {
-            console.log('Yey, the guess from the user exist in our chosen word');
-
-            correctUserGuesses.splice(getIndexChosenWord, 0, userGuessedLetter);
-            console.log(correctUserGuesses.join(' '));
+        if (Object.keys(obj).length === 0) {
+          gameVars.Lives--;
+          showLives.innerHTML = "You have " + gameVars.Lives + " remaining.";
+          if(gameVars.Lives ===0) {
+            showLives.innerHTML = "You lost. The answer was " + chosenword.toUpperCase() + " .";
+            document.onkeyup = null;
+          }
         } else {
-            gameVars.Lives--;
-            showLives.innerHTML = "You have " + gameVars.Lives + " remaining.";
+          console.log('Yey, the guess from the user exist in our chosen word');
         };
-};
+      };
 
 
 
