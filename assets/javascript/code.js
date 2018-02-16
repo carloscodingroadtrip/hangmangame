@@ -134,7 +134,6 @@ function alphabetButtons() {
 }
 
 alphabetButtons();
-console.log(letter);
 
 // Create all the guesses for the ul
 function displayWord() {
@@ -176,7 +175,6 @@ function findLetter(letter, word) {  //the function will receive 2 parameters.
   return indexForLetters; //returns an object with the index for each occurence
 }
 
-
 // Get the element to display lives left in the game
 var showLives = document.getElementById("livesLeft");
 // Show lives
@@ -197,7 +195,9 @@ document.onkeyup = function(event) {
           gameVars.Lives--;
           showLives.innerHTML = "You have " + gameVars.Lives + " remaining.";
           if(gameVars.Lives ===0) {
+            gameVars.Losses++;
             showLives.innerHTML = "You lost. The answer was " + chosenword.toUpperCase() + " .";
+            showLosses.innerHTML = gameVars.Losses;
             document.onkeyup = null;
           }
         } else {
