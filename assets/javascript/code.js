@@ -159,12 +159,10 @@ function displayWord() {
 displayWord();
 
 function findLetter(letter, word) {  //the function will receive 2 parameters.
-  let counter = 0; //Count all the occurences
-  let capLetter = letter.toUpperCase();
-  let wordArray = Array.of(word.split('')); //Split the word in pieces
+  let counter = 0; //Count all the occurencess
   let indexForLetters = {};
   for (i=0; i < word.length; i++){
-    if(letter === word[i] || capLetter === word[i]) {
+    if(letter === word[i] || letter.toUpperCase() === word[i]) {
       if(!indexForLetters[word[i]]) {
           indexForLetters[[i]] = word[i];
       }
@@ -202,6 +200,10 @@ document.onkeyup = function(event) {
           }
         } else {
           console.log('Yey, the guess from the user exist in our chosen word');
+
+          //Here I will first create an array with the letter being enter by the user
+          //Using the Object received from my function findLetter()
+          //Using the same object, I will display the correct letter in the screen
         };
       };
 
